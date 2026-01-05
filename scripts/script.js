@@ -1,4 +1,3 @@
-
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -19,7 +18,6 @@ window.addEventListener('scroll', () => {
         welcomeContent.style.opacity = opacity;
     }
 });
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -32,17 +30,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Certificates expand/collapse functionality
 const expandBtn = document.getElementById('expand-btn');
 const expandText = document.getElementById('expand-text');
 const expandIcon = document.getElementById('expand-icon');
 const certificateItems = document.querySelectorAll('.certificate-item');
 let isExpanded = false;
-
 expandBtn.addEventListener('click', () => {
     isExpanded = !isExpanded;
-
     certificateItems.forEach((item, index) => {
         if (index >= 3) {
             if (isExpanded) {
@@ -52,7 +46,6 @@ expandBtn.addEventListener('click', () => {
             }
         }
     });
-
     if (isExpanded) {
         expandText.textContent = 'Show Less';
         expandIcon.classList.add('rotated');
@@ -61,18 +54,50 @@ expandBtn.addEventListener('click', () => {
         expandIcon.classList.remove('rotated');
     }
 });
-
-// Contact form with mailto functionality
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
-
     const mailtoLink = `mailto:lrv94451@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-
     window.location.href = mailtoLink;
 });
+function createStars() {
+    const starsContainer = document.getElementById('stars-container');
+    const numberOfStars = 200;
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        starsContainer.appendChild(star);
+    }
+}
+function createShootingStar() {
+    const shootingStarsContainer = document.getElementById('shooting-stars-container');
+    const shootingStar = document.createElement('div');
+    shootingStar.className = 'shooting-star';
+    const startX = Math.random() * 50;
+    const startY = Math.random() * 30;
+    shootingStar.style.left = startX + '%';
+    shootingStar.style.top = startY + '%';
+    const duration = Math.random() * 1 + 1.5;
+    shootingStar.style.animation = `shooting ${duration}s linear`;
+    shootingStarsContainer.appendChild(shootingStar);
+    setTimeout(() => {
+        shootingStar.remove();
+    }, duration * 1000);
+}
+createStars();
+setInterval(() => {
+    if (Math.random() < 0.3) {
+        createShootingStar();
+    }
+}, 2000);
