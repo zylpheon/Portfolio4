@@ -101,3 +101,29 @@ setInterval(() => {
         createShootingStar();
     }
 }, 2000);
+const navLinks = document.querySelectorAll('.nav-link');
+const navIndicator = document.querySelector('.nav-indicator');
+const sections = document.querySelectorAll('section[id]');
+function updateActiveNav() {
+    let current = '';
+    const scrollPosition = window.scrollY + 100;
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    navLinks.forEach((link, index) => {
+        const href = link.getAttribute('href').substring(1);
+        if (href === current) {
+            const linkRect = link.getBoundingClientRect();
+            const navRect = link.parentElement.parentElement.getBoundingClientRect();
+
+            navIndicator.style.width = linkRect.width + 'px';
+            navIndicator.style.left = (linkRect.left - navRect.left) + 'px';
+        }
+    });
+}
+window.addEventListener('load', updateActiveNav);
+window.addEventListener('scroll', updateActiveNav);

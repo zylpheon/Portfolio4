@@ -5,7 +5,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Stars Background */
 #stars-container {
     position: fixed;
     top: 0;
@@ -63,27 +62,27 @@ body {
     width: 80px;
     height: 2px;
     background: linear-gradient(90deg, rgba(255, 215, 0, 0.8), transparent);
+    transform: rotate(45deg);
+    transform-origin: right center;
 }
 
 @keyframes shooting {
     0% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) rotate(45deg);
         opacity: 1;
     }
 
     100% {
-        transform: translate(300px, 300px);
+        transform: translate(300px, 300px) rotate(45deg);
         opacity: 0;
     }
 }
 
-/* Navbar */
 .navbar-blur {
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Colors */
 .text-gold {
     color: #FFD700;
 }
@@ -100,79 +99,73 @@ body {
     color: #FFD700;
 }
 
-/* Neon Text for Navbar - Subtle */
 .neon-text-navbar {
     text-shadow:
-        0 0 5px #FFD700,
-        0 0 10px #FFD700,
-        0 0 15px #FFD700;
+        0 0 3px #FFD700,
+        0 0 6px #FFD700;
     animation: neon-glow-navbar 2s ease-in-out infinite alternate;
 }
 
 @keyframes neon-glow-navbar {
     from {
         text-shadow:
-            0 0 5px #FFD700,
-            0 0 10px #FFD700,
-            0 0 15px #FFD700;
+            0 0 3px #FFD700,
+            0 0 6px #FFD700;
     }
 
     to {
         text-shadow:
-            0 0 8px #FFD700,
-            0 0 15px #FFD700,
-            0 0 20px #FFD700,
-            0 0 25px #FFD700;
+            0 0 5px #FFD700,
+            0 0 10px #FFD700;
     }
 }
 
-/* Neon Text for Section Headers - Reduced */
 .neon-text-subtle {
     text-shadow:
-        0 0 5px #FFD700,
-        0 0 10px #FFD700;
+        0 0 3px #FFD700,
+        0 0 6px #FFD700;
     animation: neon-glow-subtle 2s ease-in-out infinite alternate;
 }
 
 @keyframes neon-glow-subtle {
     from {
         text-shadow:
-            0 0 5px #FFD700,
-            0 0 10px #FFD700;
+            0 0 3px #FFD700,
+            0 0 6px #FFD700;
     }
 
     to {
         text-shadow:
-            0 0 8px #FFD700,
-            0 0 15px #FFD700,
-            0 0 20px #FFD700;
+            0 0 5px #FFD700,
+            0 0 10px #FFD700;
     }
 }
 
-/* Shine Text Effect - Hover Animation */
 .shine-text {
     position: relative;
     color: #FFD700;
     background: linear-gradient(90deg,
-            transparent 0%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.8) 50%,
-            transparent 60%,
-            transparent 100%);
+            #FFD700 0%,
+            #FFD700 40%,
+            #FFFFFF 50%,
+            #FFD700 60%,
+            #FFD700 100%);
     background-size: 200% 100%;
-    background-position: -200% 0;
+    background-position: -100% 0;
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: #FFD700;
-    animation: shine-move 3s linear infinite;
+    -webkit-text-fill-color: transparent;
+    animation: shine-move 4s ease-in-out infinite;
 }
 
 @keyframes shine-move {
-    0% {
-        background-position: -200% 0;
+
+    0%,
+    100% {
+        background-position: -100% 0;
     }
 
-    100% {
+    50% {
         background-position: 200% 0;
     }
 }
@@ -199,7 +192,6 @@ body {
     z-index: 1;
 }
 
-/* Social Icons */
 .social-icon {
     transition: all 0.3s ease;
 }
@@ -208,7 +200,6 @@ body {
     transform: translateY(-5px) scale(1.1);
 }
 
-/* Card Hover Effect */
 .card-hover {
     transition: all 0.3s ease;
 }
@@ -218,7 +209,6 @@ body {
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
-/* Expand Button */
 .expand-btn {
     transition: all 0.3s ease;
 }
@@ -227,17 +217,28 @@ body {
     transform: rotate(180deg);
 }
 
-/* Footer with Blur */
 footer {
     position: relative;
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Ensure content is above stars */
 nav,
 section,
 footer {
     position: relative;
     z-index: 10;
+}
+
+nav ul {
+    position: relative;
+}
+
+.nav-indicator {
+    position: absolute;
+    bottom: -8px;
+    height: 2px;
+    background-color: #FFD700;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #FFD700;
 }
