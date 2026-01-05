@@ -54,6 +54,7 @@ body {
     background: linear-gradient(90deg, transparent, #FFD700, transparent);
     transform: rotate(45deg);
     transform-origin: left center;
+    opacity: 0;
 }
 
 .shooting-star::before {
@@ -70,10 +71,14 @@ body {
 @keyframes shooting {
     0% {
         transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 0;
+    }
+
+    10% {
         opacity: 1;
     }
 
-    70% {
+    80% {
         opacity: 1;
     }
 
@@ -246,5 +251,5 @@ nav ul {
     background-color: #FFD700;
     transition: all 0.3s ease;
     box-shadow: 0 0 5px #FFD700;
-    margin: 0;
+    margin: 0 !important;
 }
