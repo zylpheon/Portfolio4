@@ -209,6 +209,37 @@ body {
     transform: translateY(-5px) scale(1.1);
 }
 
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+}
+
+.hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hover-underline-animation.center::after {
+    transform-origin: bottom center;
+}
+
+.hover-underline-animation.center:hover::after {
+    transform-origin: bottom center;
+}
+
 .card-hover {
     transition: all 0.3s ease;
 }
@@ -252,4 +283,8 @@ nav ul {
     transition: all 0.3s ease;
     box-shadow: 0 0 5px #FFD700;
     margin: 0 !important;
+}
+
+.nav-link.active {
+    color: #FFD700;
 }
